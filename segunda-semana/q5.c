@@ -11,7 +11,7 @@ int main()
 {
     int v[4];
 
-    for (int i = 0; i <= 4; i++)
+    for (int i = 0; i < 4; i++)
     {
         printf("Informe o valor do vetor v[%d]: ", i);
         scanf("%d", &v[i]);
@@ -35,7 +35,7 @@ void inverter(int *v, int n)
     *(v + 3) = guardaValor1;
     *(v + 4) = guardaValor0;
 
-    for (int c = 0; c <= n; c++)
+    for (int c = 0; c < n; c++)
     {
         printf("Valor vetor v[%d]: %d\n", c, v[c]);
     }
