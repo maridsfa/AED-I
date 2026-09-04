@@ -8,6 +8,7 @@ typedef struct
     int idade;
 } Aluno;
 
+void free_alunos(Aluno *aluno);
 int inserir_aluno(Aluno **alunos, int *n, Aluno novo);
 int remover_aluno(Aluno **alunos, int *n, int posicao);
 void listar_alunos(Aluno *aluno, int n);
@@ -15,7 +16,7 @@ void listar_alunos(Aluno *aluno, int n);
 int main()
 {
     int op, n = 0;
-    Aluno *alunos;
+    Aluno *alunos = NULL;
 
     do
     {
@@ -30,8 +31,8 @@ int main()
 
         if (op == 0)
         {
+            free_alunos(alunos);
             break;
-            // free;
         }
 
         if (op == 1)
@@ -111,20 +112,34 @@ int inserir_aluno(Aluno **alunos, int *n, Aluno novo)
 
 int remover_aluno(Aluno **alunos, int *n, int posicao)
 {
+    if (posicao < 0 || posicao >= *n)
+    {
+        return 0;
+    }
+
+    if (*n == 1)
+    {
+        free(*alunos);
+        *alunos = NULL;
+        *n = 0;
+        return 1;
+    }
+
     for (int c = posicao; c < *n - 1; c++)
     {
         *(*alunos + c) = *(*alunos + (c + 1));
     }
 
-    *alunos = realloc(*alunos, (*n - 1) * sizeof(Aluno));
+    Aluno *aux = realloc(*alunos, (*n - 1) * sizeof(Aluno));
 
-    if (*alunos == NULL)
+    if (aux == NULL)
     {
         return 0;
     }
 
     (*n)--;
 
+    *alunos = aux;
     return 1;
 }
 
@@ -136,4 +151,9 @@ void listar_alunos(Aluno *alunos, int n)
         printf("Nota: %.2f\n", alunos[c].nota);
         printf("Idade: %d\n", alunos[c].idade);
     }
+}
+
+void free_alunos(Aluno *aluno)
+{
+    free(aluno);
 }
