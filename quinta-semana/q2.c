@@ -35,7 +35,21 @@ int main()
     free(lista);
 }
 
-//implementar função
 int retornaQuantidadeElementos(Head *lista)
 {
+    int cont = 0;
+    if (listaVazia(lista))
+    {
+        return cont;
+    }
+
+    Nodo *atual = lista->pFirst;
+
+    while (atual != NULL)
+    {
+        cont++;
+        atual = atual->prox;
+    }
+
+    return cont;
 }
