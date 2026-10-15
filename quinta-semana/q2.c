@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "lista.h"
 
-Nodo *criaNo(Dados *dado);
 int retornaQuantidadeElementos(Head *lista);
 
 int main()
