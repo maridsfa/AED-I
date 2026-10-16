@@ -15,5 +15,8 @@ q4.exe: q4.c lista.c lista.h
 q5.exe: q5.c lista.c lista.h
 	$(CC) $(CFLAGS) q5.c lista.c -o q5.exe
 
+q7.exe: q7.c lista.c lista.h
+	$(CC) $(CFLAGS) q7.c lista.c -o q7.exe
+
 clean:
-	rm -f q2.exe q3.exe q4.exe q5.exe
+	rm -f q2.exe q3.exe q4.exe q5.exe q7.exe

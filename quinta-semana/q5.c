@@ -30,6 +30,8 @@ int main()
     inverteLista(lista);
     printf("\nLista atualizada:\n");
     imprimirLista(lista);
+
+    liberaLista(lista);
 }
 
 void inverteLista(Head *lista)
