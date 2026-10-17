@@ -49,6 +49,7 @@ void inserirFinal(Head *lista, Dados dado)
     novoElemento->prox = NULL;
 
     if (listaVazia(lista))
+    
     {
         lista->pFirst = novoElemento;
         return;
