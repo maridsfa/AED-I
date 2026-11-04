@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include "fila.h"
 
-struct fila
-{
-    Elem *inicio;
-    Elem *fim;
-    int quantidade;
-};
-
 void reset(Fila *fila)
 {
     fila->inicio = NULL;

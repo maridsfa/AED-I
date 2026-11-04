@@ -7,7 +7,12 @@ typedef struct
     Elem *proximo; // Ponteiro para o próximo elemento
 } Elem;
 
-typedef struct fila Fila;
+typedef struct
+{
+    Elem *inicio;
+    Elem *fim;
+    int quantidade;
+} Fila;
 
 void reset(Fila *fila);
 int empty(Fila *fila);
