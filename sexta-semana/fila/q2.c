@@ -3,6 +3,6 @@
 
 int main()
 {
-    Fila *fila;
-
+    Fila fila;
+    
 }
