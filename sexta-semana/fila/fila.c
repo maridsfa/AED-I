@@ -2,11 +2,23 @@
 #include <stdlib.h>
 #include "fila.h"
 
-void reset(Fila *fila)
+typedef struct fila
 {
-    fila->inicio = NULL;
-    fila->fim = NULL;
-    fila->quantidade = 0;
+    Elem *inicio;
+    Elem *fim;
+    int quantidade;
+} Fila;
+
+Fila *reset()
+{
+    Fila *fila = (Fila *)malloc(sizeof(Fila));
+    if (fila != NULL)
+    {
+        fila->inicio = NULL;
+        fila->fim = NULL;
+        fila->quantidade = 0;
+    }
+    return fila;
 }
 
 int empty(Fila *fila)
@@ -53,14 +65,14 @@ Elem dequeue(Fila *fila)
         return elemento;
     }
 
-    aux = fila->fim; // Recebe o endereço do primeiro elemento (aquele que vai sair da fila)
-    elemento = *aux; // Pega o conteúdo do ponteiro (o primeiro da lista) e salva no elemento para poder liberar a memória e não perder os dados
+    aux = fila->inicio; // Recebe o endereço do primeiro elemento (aquele que vai sair da fila)
+    elemento = *aux;    // Pega o conteúdo do ponteiro (o primeiro da lista) e salva no elemento para poder liberar a memória e não perder os dados
 
     fila->inicio = fila->inicio->proximo;
 
     if (fila->inicio == NULL)
     {
-        fila->fim == NULL;
+        fila->fim = NULL;
     }
 
     free(aux);
@@ -105,4 +117,27 @@ void print(Fila *fila)
     }
 
     printf("\n");
+}
+
+Elem retornaMaiorValor(Fila *fila)
+{
+    if (empty(fila))
+    {
+        Elem vazia = {0};
+        return vazia;
+    }
+
+    Elem *aux = fila->inicio;
+    Elem maiorValor = *aux;
+
+    while (aux != NULL)
+    {
+        if (aux->valor > maiorValor.valor)
+        {
+            maiorValor = *aux;
+        }
+        aux = aux->proximo;
+    }
+
+    return maiorValor;
 }

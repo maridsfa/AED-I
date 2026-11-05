@@ -1,20 +1,17 @@
 #ifndef FILA_H
 #define FILA_H
 
-typedef struct
+typedef struct elem Elem;
+
+typedef struct elem
 {
     int valor;
-    Elem *proximo; // Ponteiro para o próximo elemento
+    Elem *proximo;
 } Elem;
 
-typedef struct
-{
-    Elem *inicio;
-    Elem *fim;
-    int quantidade;
-} Fila;
+typedef struct fila Fila;
 
-void reset(Fila *fila);
+Fila *reset();
 int empty(Fila *fila);
 int size(Fila *fila);
 void enqueue(Fila *fila, Elem elem);
@@ -22,5 +19,6 @@ Elem dequeue(Fila *fila);
 void front(Fila *fila);
 void clear(Fila *fila);
 void print(Fila *fila);
+Elem retornaMaiorValor(Fila *fila);
 
 #endif
