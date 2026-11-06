@@ -141,3 +141,59 @@ Elem retornaMaiorValor(Fila *fila)
 
     return maiorValor;
 }
+
+void inverteFila(Fila *fila)
+{
+    if (empty(fila))
+    {
+        return;
+    }
+
+    Elem *atual = fila->inicio;
+    Elem *anterior = NULL;
+    Elem *proximo = NULL;
+
+    // O antigo início passa a ser o novo fim
+    fila->fim = fila->inicio;
+
+    // Inverte o direcionamento dos ponteiros 'proximo'
+    while (atual != NULL)
+    {
+        proximo = atual->proximo;  // Guarda o próximo nó
+        atual->proximo = anterior; // Inverte o ponteiro
+        anterior = atual;          // Avança o anterior
+        atual = proximo;           // Avança o atual
+    }
+
+    // O antigo fim (último nó processado) passa a ser o novo início
+    fila->inicio = anterior;
+}
+
+void remover(Fila *fila, int valor)
+{
+    if (empty(fila))
+    {
+        return;
+    }
+
+    int tamanho_original = 0;
+    Elem *aux = fila->inicio;
+
+    while (aux != NULL)
+    {
+        tamanho_original++;
+        aux = aux->proximo;
+    }
+
+    // Processa cada elemento uma única vez
+    for (int i = 0; i < tamanho_original; i++)
+    {
+        Elem auxElemento = dequeue(fila);
+
+        // Se for diferente do valor re-insere na fila
+        if (auxElemento.valor != valor)
+        {
+            enqueue(fila, auxElemento);
+        }
+    }
+}

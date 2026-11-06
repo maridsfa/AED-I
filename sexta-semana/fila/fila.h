@@ -20,5 +20,7 @@ void front(Fila *fila);
 void clear(Fila *fila);
 void print(Fila *fila);
 Elem retornaMaiorValor(Fila *fila);
+void inverteFila(Fila *fila);
+void remover(Fila *fila, int valor);
 
 #endif
